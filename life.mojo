@@ -12,12 +12,11 @@ fn grid_str(grid: Grid) -> String:
                 str += "*"  # If cell is populated, append an asterisk
             else:
                 str += " "  # If cell is not populated, append a space
-        if row != grid.rows - 1:
-            str += "\n"     # Add a newline between rows, but not at the end
+        str += "\n"     # Add a newline between rows, but not at the end
     return str
 
 def main():
-    glider = [
+    data = [
         [0, 1, 0, 0, 0, 0, 0, 0],
         [0, 0, 1, 0, 0, 0, 0, 0],
         [1, 1, 1, 0, 0, 0, 0, 0],
@@ -27,6 +26,10 @@ def main():
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
     ]
-    start = Grid(8, 8, glider^)
+    start = Grid(8, 8, data^)
     result = grid_str(start)
     print(result)
+    
+    # this will fail because data^ means data is shifted ownership to Grid
+    # so we cannot use data anymore, since data is uninitialized now 
+    # print(data)
